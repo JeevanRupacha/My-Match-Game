@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Courier+Prime&display=swap" rel="stylesheet">
+  <style>
+
+html{
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(#e66465, #9198e5);
+}
+
+.wrapper{
+text-align: center;
+margin-top: 7%;
+
+}
+
+  .div{
+
+    height: 25vh;
+    width: 9%;
+    border: 2px dotted aqua;
+    display : inline-block;
+    margin : 5px;
+
+  }
+
+.div{
+  border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 100px;
+ font-family: sans-serif;
+ padding-top: 2%;
+ cursor: pointer;
+}
+
+.div:hover{
+  background: aqua;
+}
+
+
+.active{
+  visibility: hidden;
+}
+input[type='button']{
+margin-top: 3%;
+font-size: 30px;
+font-family: sans-serif;
+border-radius: 50px;
+padding: 1%;
+background: aqua;
+}
+
+.center{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.hideimg{
+  background: orange;
+  color: orange;
+}
+
+.win{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 150px;
+  color: orange;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: center;
+
+}
+
+p{
+  font-family: Courier Prime;
+  color: white;
+  font-size: 25px;
+  display: inline-block;
+}
+
+.rule{
+  text-align: center;
+}
+  </style>
+</head>
+<body>
+  <div>
+    <div class="btn"><input type="button" value= "Start The Game" onclick = "start()" class="center"></div>
+  </div>
+  <div class="rule"><span><p >Rule for this game is you should match the same number CARD by clicking</p></span></div>
+  <div>
+    <div class="win"></div>
+  </div>
+  <div class="wrapper">
+
+    <div class="div" data-row="0">1</div>
+    <div class="div" data-row="1">2</div>
+    <div class="div" data-row="2">3</div>
+    <div class="div" data-row="3">4</div>
+    <div class="div" data-row="4">5</div>
+    <div class="div" data-row="5">6</div>
+    <div class="div" data-row="6">7</div>
+    <div class="div" data-row="7">8</div>
+    <div class="div" data-row="8">9</div>
+    <div class="div" data-row="9">10</div>
+    <div class="div" data-row="10">1</div>
+    <div class="div" data-row="11">2</div>
+    <div class="div" data-row="12">3</div>
+    <div class="div" data-row="13">4</div>
+    <div class="div" data-row="14">5</div>
+    <div class="div" data-row="15">6</div>
+    <div class="div" data-row="16">7</div>
+    <div class="div" data-row="17">8</div>
+    <div class="div" data-row="18">9</div>
+    <div class="div" data-row="19">10</div>
+  </div>
+
+
+  <script>
+    var temp =0;
+    var data = ['a','b'];
+    var box = document.querySelectorAll(".div");
+    var text=['a','b'];
+    var boxname = ['a','b'];
+    var number=0;
+    function start(){
+      document.querySelector('.win').innerHTML = ' ';
+     for(var i=0;i<box.length;i++){
+       box[i].classList.add('hideimg');
+       if(box[i].classList.contains('active')){
+         box[i].classList.remove('active');
+       }
+     }
+
+    var gameNum = [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10];
+    gameNum.sort(function(a,b){
+      return 0.5-Math.random()
+    });
+    for(var i=0; i<box.length; i++){
+    box[i].innerHTML = gameNum[i];
+  }
+}
+
+    for(var i=0; i<box.length; i++){
+
+      box[i].onclick = function(){
+        number++;
+      if(number%2==0){
+        text[0] = this.innerText;
+        boxname[0] = this.getAttribute("data-row");
+
+      }
+      else{
+      text[1]= this.innerText;
+    boxname[1] = this.getAttribute("data-row");
+    // boxname[1] = curent.target;
+       }
+console.log(boxname);
+    if(boxname[0]!=boxname[1]){
+       if(text[0]==text[1]){
+         box[boxname[0]].classList.add('active');
+         box[boxname[1]].classList.add('active');
+         temp++;
+         if(temp== 10){
+
+           document.querySelector('.win').innerHTML = "YOU ARE THE WINNER!";
+         }
+       }
+     }
+
+
+      }
+
+
+      }
+
+  </script>
+</body>
+</html>
