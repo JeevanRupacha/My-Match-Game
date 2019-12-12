@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link href="https://fonts.googleapis.com/css?family=Courier+Prime&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Caveat|Courier+Prime&display=swap" rel="stylesheet">
   <style>
 
 html{
@@ -49,7 +50,7 @@ margin-top: 7%;
   visibility: hidden;
 }
 input[type='button']{
-margin-top: 5%;
+margin-top: 4%;
 font-size: 30px;
 font-family: sans-serif;
 border-radius: 50px;
@@ -75,7 +76,7 @@ background: aqua;
   transform: translate(-50%,-50%);
   font-size: 150px;
   color: orange;
-  font-family: sans-serif;
+  font-family: Caveat;
   font-weight: bold;
   text-align: center;
 
@@ -91,9 +92,32 @@ p{
 .rule{
   text-align: center;
 }
+#timer{
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  font-size: 100px;
+  background: #001724;
+  border-radius: 7px;
+  color: red;
+}
+
+#ctime{
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  font-size: 30px;
+  color: white;
+  background: #02141f;
+  border-radius: 4px;
+  padding: 5px;
+}
+
   </style>
 </head>
 <body>
+  <span id= "timer">0</span>
+  <span id="ctime"></span>
   <div>
     <div class="btn"><input type="button" value= "Start The Game" onclick = "start()" class="center"></div>
   </div>
@@ -127,14 +151,55 @@ p{
 
 
   <script>
+    var timeitr;
     var temp =0;
+    var time = 0;
+    var ctime;
     var data = ['a','b'];
     var box = document.querySelectorAll(".div");
     var text=['a','b'];
     var boxname = ['a','b'];
     var number=0;
     function start(){
+
+      if(temp!=0){
+        temp = 0;
+      }
+
+      if(time!=0){
+        time=0;
+      }
+
+      if(ctime!=0){
+        ctime = 0;
+      }
+      window.clearInterval(timeitr);
+
+      if(time!=0){
+        time =0;
+      }
+     console.log(time);
+    timeitr= setInterval(timer,1000);
+      //timer function
+      function timer(){
+        time++;
+        gameover();
+        document.getElementById('timer').innerHTML = time;
+      }
+    function gameover(){
+    if(time==42){
+     document.querySelector('.win').innerHTML = 'YOU LOSE THE GAME!';
+      window.clearInterval(timeitr);
+      for(var i=0; i<box.length; i++){
+        box[i].classList.add('active');
+      }
+    }
+  }
+
+
       document.querySelector('.win').innerHTML = ' ';
+
+
      for(var i=0;i<box.length;i++){
        box[i].classList.add('hideimg');
        if(box[i].classList.contains('active')){
@@ -149,7 +214,10 @@ p{
     for(var i=0; i<box.length; i++){
     box[i].innerHTML = gameNum[i];
   }
-}
+// } eliminate of start
+
+
+
 
     for(var i=0; i<box.length; i++){
 
@@ -172,18 +240,21 @@ console.log(boxname);
          box[boxname[1]].classList.add('active');
          temp++;
          if(temp== 10){
-
            document.querySelector('.win').innerHTML = "YOU ARE THE WINNER!";
+           cleartime();
+           ctime = time;
+           document.getElementById('ctime').innerHTML= "Complete Time: "+ctime;
+           console.log(time);
          }
        }
      }
-
+function cleartime(){
+window.clearInterval(timeitr);
+}
 
       }
-
-
       }
-
+}
   </script>
 </body>
 </html>
