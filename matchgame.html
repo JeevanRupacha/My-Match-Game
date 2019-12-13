@@ -55,6 +55,7 @@ font-size: 30px;
 font-family: sans-serif;
 border-radius: 50px;
 padding: 1%;
+border: 1px solid black;
 background: aqua;
 }
 
@@ -105,9 +106,10 @@ p{
   background: #001724;
   border-radius: 7px;
   color: red;
+  padding: 5px;
 }
 
-#ctime{
+.ctime{
   position: absolute;
   top: 15%;
   left: 15%;
@@ -121,8 +123,8 @@ p{
   </style>
 </head>
 <body>
-  <span id= "timer">0</span>
-  <span id="ctime"></span>
+  <span id="timer">0</span>
+  <span id="comtime"></span>
   <div>
     <div class="btn"><input type="button" value= "Start The Game" onclick = "start()" class="center"></div>
   </div>
@@ -248,7 +250,9 @@ console.log(boxname);
            document.querySelector('.win').innerHTML = "YOU ARE THE WINNER!";
            cleartime();
            ctime = time;
-           document.getElementById('ctime').innerHTML= "Complete Time: "+ctime;
+           var comtime = document.getElementById('comtime');
+           comtime.setAttribute('class','ctime');
+           document.getElementById('comtime').innerHTML= "Complete Time: "+ctime;
            console.log(time);
          }
        }
