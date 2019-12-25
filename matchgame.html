@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,127 +9,131 @@
   <link href="https://fonts.googleapis.com/css?family=Courier+Prime&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Caveat|Courier+Prime&display=swap" rel="stylesheet">
   <style>
+    html {
+      height: 100vh;
+      width: 100vw;
+      background: linear-gradient(#e66465, #9198e5);
+      font-size: 2em;
+    }
 
-html{
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(#e66465, #9198e5);
-}
+    .wrapper {
+      text-align: center;
+      margin-top: 7%;
 
-.wrapper{
-text-align: center;
-margin-top: 7%;
+    }
 
-}
+    .div {
 
-  .div{
+      height: 25vh;
+      width: 9%;
+      border: 2px dotted aqua;
+      display: inline-block;
+      margin: 2px;
 
-    height: 25vh;
-    width: 9%;
-    border: 2px dotted aqua;
-    display : inline-block;
-    margin : 2px;
+    }
 
-  }
+    .div {
+      border-radius: 10px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 100px;
+      font-family: sans-serif;
+      padding-top: 2%;
+      cursor: pointer;
+    }
 
-.div{
-  border-radius: 10px;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 100px;
- font-family: sans-serif;
- padding-top: 2%;
- cursor: pointer;
-}
-
-.div:hover{
-  background: aqua;
-}
+    .div:hover {
+      background: aqua;
+    }
 
 
-.active{
-  visibility: hidden;
-}
-input[type='button']{
-margin-top: 4%;
-font-size: 30px;
-font-family: sans-serif;
-border-radius: 50px;
-padding: 1%;
-border: 1px solid black;
-background: aqua;
-}
+    .active {
+      visibility: hidden;
+    }
 
-input[type='button']:hover{
-  background: #f5e7e4;
-  opacity: 0.7;
-}
+    input[type='button'] {
+      margin-top: 4%;
+      font-size: 30px;
+      font-family: sans-serif;
+      border-radius: 50px;
+      padding: 1%;
+      border: 1px solid black;
+      background: aqua;
+    }
 
-.center{
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-}
+    input[type='button']:hover {
+      background: #f5e7e4;
+      opacity: 0.7;
+    }
 
-.hideimg{
-  background: orange;
-  color: orange;
-}
+    .center {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+    }
 
-.win{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  font-size: 150px;
-  color: orange;
-  font-family: Caveat;
-  font-weight: bold;
-  text-align: center;
+    .hideimg {
+      background: orange;
+      color: orange;
+    }
 
-}
+    .win {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 350%;
+      color: orange;
+      font-family: Caveat;
+      font-weight: bold;
+      text-align: center;
 
-p{
-  font-family: Courier Prime;
-  color: white;
-  font-size: 25px;
-  display: inline-block;
-}
+    }
 
-.rule{
-  text-align: center;
-}
-#timer{
-  position: absolute;
-  top: 3%;
-  left: 3%;
-  font-size: 100px;
-  background: #001724;
-  border-radius: 7px;
-  color: red;
-  padding: 5px;
-}
+    p {
+      font-family: Courier Prime;
+      color: white;
+      font-size: 25px;
+      display: inline-block;
+    }
 
-.ctime{
-  position: absolute;
-  top: 15%;
-  left: 15%;
-  font-size: 30px;
-  color: white;
-  background: #02141f;
-  border-radius: 4px;
-  padding: 5px;
-}
+    .rule {
+      text-align: center;
+    }
 
+    #timer {
+      position: absolute;
+      top: 3%;
+      left: 3%;
+      font-size: 100px;
+      background: #001724;
+      border-radius: 7px;
+      color: red;
+      padding: 5px;
+    }
+
+    .ctime {
+      position: absolute;
+      top: 15%;
+      left: 15%;
+      font-size: 30px;
+      color: white;
+      background: #02141f;
+      border-radius: 4px;
+      padding: 5px;
+    }
   </style>
 </head>
+
 <body>
   <span id="timer">0</span>
   <span id="comtime"></span>
   <div>
-    <div class="btn"><input type="button" value= "Start The Game" onclick = "start()" class="center"></div>
+    <div class="btn"><input type="button" value="Start The Game" onclick="start()" class="center"></div>
   </div>
-  <div class="rule"><span><p >Rule for this game is you should match the same number CARD by clicking</p></span></div>
+  <div class="rule"><span>
+      <p>Rule for this game is you should match the same number CARD by clicking</p>
+    </span></div>
   <div>
     <div class="win"></div>
   </div>
@@ -158,111 +163,134 @@ p{
 
 
   <script>
+    var beep;
     var timeitr;
-    var temp =0;
-    var time = 0;
+    var temp = 0;
+    var time = 38;
     var ctime;
-    var data = ['a','b'];
+    var data = ['a', 'b'];
     var box = document.querySelectorAll(".div");
-    var text=['a','b'];
-    var boxname = ['a','b'];
-    var number=0;
-    function start(){
+    var text = ['a', 'b'];
+    var boxname = ['a', 'b'];
+    var number = 0;
 
-      if(temp!=0){
+    function start() {
+
+      if (temp != 0) {
         temp = 0;
       }
 
-      if(time!=0){
-        time=0;
+      if (time != 38) {
+        time = 38;
       }
 
-      if(ctime!=0){
+      if (ctime != 0) {
         ctime = 0;
       }
       window.clearInterval(timeitr);
 
-      if(time!=0){
-        time =0;
+      if (time != 38) {
+        time = 38;
       }
-     console.log(time);
-    timeitr= setInterval(timer,1000);
+      console.log(time);
+      timeitr = setInterval(timer, 1000);
       //timer function
-      function timer(){
-        time++;
+      function timer() {
+        ctime++;
+        time--;
         gameover();
         document.getElementById('timer').innerHTML = time;
       }
-    function gameover(){
-    if(time==42){
-     document.querySelector('.win').innerHTML = 'YOU LOSE THE GAME!';
-      window.clearInterval(timeitr);
-      for(var i=0; i<box.length; i++){
-        box[i].classList.add('active');
+
+      function gameover() {
+        if (time == 0) {
+          document.querySelector('.win').innerHTML = 'YOU LOSE THE GAME!';
+          window.clearInterval(timeitr);
+          for (var i = 0; i < box.length; i++) {
+            box[i].classList.add('active');
+          }
+        }
       }
-    }
-  }
 
 
       document.querySelector('.win').innerHTML = ' ';
 
 
-     for(var i=0;i<box.length;i++){
-       box[i].classList.add('hideimg');
-       if(box[i].classList.contains('active')){
-         box[i].classList.remove('active');
-       }
-     }
-
-    var gameNum = [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10];
-    gameNum.sort(function(a,b){
-      return 0.5-Math.random()
-    });
-    for(var i=0; i<box.length; i++){
-    box[i].innerHTML = gameNum[i];
-  }
-// } eliminate of start
-
-
-
-
-    for(var i=0; i<box.length; i++){
-
-      box[i].onclick = function(){
-        number++;
-      if(number%2==0){
-        text[0] = this.innerText;
-        boxname[0] = this.getAttribute("data-row");
-
+      for (var i = 0; i < box.length; i++) {
+        box[i].classList.add('hideimg');
+        if (box[i].classList.contains('active')) {
+          box[i].classList.remove('active');
+        }
       }
-      else{
-      text[1]= this.innerText;
-    boxname[1] = this.getAttribute("data-row");
-    // boxname[1] = curent.target;
-       }
-console.log(boxname);
-    if(boxname[0]!=boxname[1]){
-       if(text[0]==text[1]){
-         box[boxname[0]].classList.add('active');
-         box[boxname[1]].classList.add('active');
-         temp++;
-         if(temp== 10){
-           document.querySelector('.win').innerHTML = "YOU ARE THE WINNER!";
-           cleartime();
-           ctime = time;
-           var comtime = document.getElementById('comtime');
-           comtime.setAttribute('class','ctime');
-           document.getElementById('comtime').innerHTML= "Complete Time: "+ctime;
-           console.log(time);
-         }
-       }
-     }
-function cleartime(){
-window.clearInterval(timeitr);
-       }
+
+      var gameNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      gameNum.sort(function(a, b) {
+        return 0.5 - Math.random()
+      });
+      for (var i = 0; i < box.length; i++) {
+        box[i].innerHTML = gameNum[i];
+      }
+      // } eliminate of start
+
+
+
+
+      for (var i = 0; i < box.length; i++) {
+
+        box[i].onclick = function() {
+          beepSound();
+          //alert("alert");
+          number++;
+          if (number % 2 == 0) {
+            text[0] = this.innerText;
+            boxname[0] = this.getAttribute("data-row");
+
+          } else {
+            text[1] = this.innerText;
+            boxname[1] = this.getAttribute("data-row");
+            // boxname[1] = curent.target;
+          }
+          console.log(boxname);
+          if (boxname[0] != boxname[1]) {
+            if (text[0] == text[1]) {
+              manSound();
+              box[boxname[0]].classList.add('active');
+              box[boxname[1]].classList.add('active');
+              temp++;
+              if (temp == 10) {
+                document.querySelector('.win').innerHTML = "YOU ARE THE WINNER!";
+                cleartime();
+                // ctime = time;
+                var comtime = document.getElementById('comtime');
+                comtime.setAttribute('class', 'ctime');
+                document.getElementById('comtime').innerHTML = "Complete Time: " + ctime;
+                console.log(time);
+              }
+            }
+          }
+
+          function cleartime() {
+            window.clearInterval(timeitr);
+          }
+        }
       }
     }
-   }
+
+    function beepSound() {
+      beep = new Audio("button-3.mp3");
+      beep.play();
+    }
+    function manSound() {
+      beep = new Audio("man.mp3");
+      beep.play();
+    }
+
+    function backSound(){
+      beep = new Audio("inception.mp3");
+      beep.play();
+    }
+
   </script>
 </body>
+
 </html>
